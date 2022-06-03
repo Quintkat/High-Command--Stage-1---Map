@@ -5,3 +5,4 @@ func saveDictToJSON(path : String, dict : Dictionary):
 	saveFile.open(path, File.WRITE)
 	saveFile.store_line(to_json(dict))
 	saveFile.close()
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Map Editor/Map Editor.gd" type="Script" id=1]
 [ext_resource path="res://Map Editor/Map Editor Theme.tres" type="Theme" id=2]
@@ -36,6 +36,8 @@
 [ext_resource path="res://Map/Nation Label/HeaderRow.tscn" type="PackedScene" id=34]
 
 [sub_resource type="ButtonGroup" id=1]
+
+[sub_resource type="ButtonGroup" id=2]
 
 [node name="Map Editor" type="Node2D"]
 script = ExtResource( 1 )
@@ -1395,27 +1397,81 @@ grow_vertical = 0
 
 [node name="Top" type="HBoxContainer" parent="GUILayer/OverlayMenu/VBox"]
 visible = false
-margin_right = 299.0
+margin_right = 506.0
 margin_bottom = 34.0
 
-[node name="Button" type="Button" parent="GUILayer/OverlayMenu/VBox/Top"]
+[node name="LoadImage" type="Button" parent="GUILayer/OverlayMenu/VBox/Top"]
 margin_right = 136.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 136, 0 )
 text = "Load Image"
 
-[node name="Label" type="Label" parent="GUILayer/OverlayMenu/VBox/Top"]
+[node name="Seperator" type="Label" parent="GUILayer/OverlayMenu/VBox/Top"]
 margin_left = 140.0
 margin_top = 5.0
-margin_right = 209.0
+margin_right = 145.0
+margin_bottom = 29.0
+text = "|"
+
+[node name="Overlay1" type="Button" parent="GUILayer/OverlayMenu/VBox/Top"]
+margin_left = 149.0
+margin_right = 184.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+toggle_mode = true
+pressed = true
+group = SubResource( 2 )
+text = "1"
+
+[node name="Overlay2" type="Button" parent="GUILayer/OverlayMenu/VBox/Top"]
+margin_left = 188.0
+margin_right = 224.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 2 )
+text = "2"
+
+[node name="Overlay3" type="Button" parent="GUILayer/OverlayMenu/VBox/Top"]
+margin_left = 228.0
+margin_right = 263.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 2 )
+text = "3"
+
+[node name="Overlay4" type="Button" parent="GUILayer/OverlayMenu/VBox/Top"]
+margin_left = 267.0
+margin_right = 303.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 2 )
+text = "4"
+
+[node name="Overlay5" type="Button" parent="GUILayer/OverlayMenu/VBox/Top"]
+margin_left = 307.0
+margin_right = 342.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 2 )
+text = "5"
+
+[node name="Label" type="Label" parent="GUILayer/OverlayMenu/VBox/Top"]
+margin_left = 346.0
+margin_top = 5.0
+margin_right = 415.0
 margin_bottom = 29.0
 text = "| Scale: "
 
 [node name="SpinBox" type="SpinBox" parent="GUILayer/OverlayMenu/VBox/Top"]
-margin_left = 213.0
-margin_right = 299.0
+margin_left = 419.0
+margin_right = 505.0
 margin_bottom = 34.0
 min_value = 0.01
+max_value = 1000.0
 step = 0.1
 value = 1.0
 
@@ -1438,8 +1494,8 @@ text = "| Opacity:"
 
 [node name="HSlider" type="HSlider" parent="GUILayer/OverlayMenu/VBox/Bottom"]
 visible = false
-margin_left = 140.0
-margin_right = 420.0
+margin_left = 226.0
+margin_right = 506.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 280, 32 )
 size_flags_horizontal = 3
@@ -1462,7 +1518,6 @@ current_dir = "/"
 current_path = "/"
 
 [node name="Statistics" type="WindowDialog" parent="GUILayer"]
-visible = true
 margin_left = 285.0
 margin_top = 187.0
 margin_right = 1328.0
@@ -1497,14 +1552,23 @@ text = "Recalculate"
 
 [node name="ShortCutLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="ShortCutLayer"]
-margin_left = 16.0
+[node name="General" type="Label" parent="ShortCutLayer"]
 margin_top = 1052.0
-margin_right = 1936.0
+margin_right = 1920.0
 margin_bottom = 1073.0
 theme = ExtResource( 10 )
 custom_colors/font_color = Color( 0.768627, 0.768627, 0.768627, 1 )
-text = "Tab: Toggle GUI / F1-6: Toggle visibility layers / G or F7: Toggle grid / Shift+Click: Select tile / L.Quote: Toggle overlay"
+text = "Tab: Toggle GUI / F1-6: Toggle visibility layers / G or F7: Toggle grid / Shift+Click: Select tile"
+align = 1
+
+[node name="Overlay" type="Label" parent="ShortCutLayer"]
+visible = false
+margin_top = 1030.0
+margin_right = 1920.0
+margin_bottom = 1051.0
+theme = ExtResource( 10 )
+custom_colors/font_color = Color( 0.768627, 0.768627, 0.768627, 1 )
+text = "L.Quote: Toggle overlay / F8-F12: Select overlays"
 align = 1
 
 [connection signal="button_down" from="SelectLayer/MapInteractButton" to="." method="_on_MapInteractButton_button_down"]
@@ -1567,7 +1631,13 @@ align = 1
 [connection signal="toggled" from="GUILayer/VisibilityPanel/HBox/Grid/VisInfrastructure" to="." method="_on_VisInfrastructure_toggled"]
 [connection signal="toggled" from="GUILayer/VisibilityPanel/HBox/Grid/VisRivers" to="." method="_on_VisRivers_toggled"]
 [connection signal="toggled" from="GUILayer/VisibilityPanel/HBox/GridOverlay" to="." method="_on_GridOverlay_toggled"]
-[connection signal="pressed" from="GUILayer/OverlayMenu/VBox/Top/Button" to="." method="_on_OverlayLoad_pressed"]
+[connection signal="overlaySwitch" from="GUILayer/OverlayMenu" to="." method="_on_OverlayMenu_overlaySwitch"]
+[connection signal="pressed" from="GUILayer/OverlayMenu/VBox/Top/LoadImage" to="." method="_on_OverlayLoad_pressed"]
+[connection signal="pressed" from="GUILayer/OverlayMenu/VBox/Top/Overlay1" to="GUILayer/OverlayMenu" method="_on_Overlay1_pressed"]
+[connection signal="pressed" from="GUILayer/OverlayMenu/VBox/Top/Overlay2" to="GUILayer/OverlayMenu" method="_on_Overlay2_pressed"]
+[connection signal="pressed" from="GUILayer/OverlayMenu/VBox/Top/Overlay3" to="GUILayer/OverlayMenu" method="_on_Overlay3_pressed"]
+[connection signal="pressed" from="GUILayer/OverlayMenu/VBox/Top/Overlay4" to="GUILayer/OverlayMenu" method="_on_Overlay4_pressed"]
+[connection signal="pressed" from="GUILayer/OverlayMenu/VBox/Top/Overlay5" to="GUILayer/OverlayMenu" method="_on_Overlay5_pressed"]
 [connection signal="value_changed" from="GUILayer/OverlayMenu/VBox/Top/SpinBox" to="." method="_on_OverlayScale_value_changed"]
 [connection signal="toggled" from="GUILayer/OverlayMenu/VBox/Bottom/CheckBox" to="." method="_on_OverlayVis_toggled"]
 [connection signal="toggled" from="GUILayer/OverlayMenu/VBox/Bottom/CheckBox" to="GUILayer/OverlayMenu" method="_on_CheckBox_toggled"]

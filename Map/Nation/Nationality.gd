@@ -69,7 +69,7 @@ func createColourTexture(c : Color) -> ImageTexture:
 	var c0 = c
 	var c1 = Color(c.r, c.g, c.b, 0.666)
 	var c2 = Color(c.r, c.g, c.b, 0.333)
-	for x in range(size + 2):
+	for x in range(size):
 		for y in range(size):
 			img.set_pixel(x, y, c0)
 			img.set_pixel(x + size, y, c1)

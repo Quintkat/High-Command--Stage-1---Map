@@ -4,6 +4,7 @@ extends Node2D
 onready var EditorMap = $EditorMap
 onready var Overlay = $Overlay
 onready var OverlayFile = $GUILayer/OverlayFileDialog
+onready var OverlayShortcutLabel = $ShortCutLayer/Overlay
 onready var GUILayer = $GUILayer
 onready var propertiesPanel = $GUILayer/EditPanels/Properties
 onready var terrainPanel = $GUILayer/EditPanels/Terrain
@@ -42,7 +43,12 @@ const RESOURCE = "resource"
 const INFRASTRUCTURE = "infrastructure"
 var clickMode = NONE
 
-var overlayPath : String = ""
+var overlayAmount : int = 5
+var overlayPaths : Array = []
+var overlayTextures : Array = []
+var overlayScales : Array = []
+var overlayOpacities : Array = []
+var currentOverlay = 0
 
 var visSettings = {
 	"Nationality"		:	false,
@@ -482,17 +488,17 @@ func _on_Rivers_riverRemoved(river):
 #########################
 
 func setOverlayTexture(path : String):
-	overlayPath = path
-	var texture = Loading.loadImage(path)
-	Overlay.texture = texture
+	Overlay.texture = overlayTextures[currentOverlay]
 
 
 func setOverlayOpacity(value : float):
 	Overlay.modulate = Color(1, 1, 1, value)
+	overlayOpacities[currentOverlay] = value
 
 
 func setOverlayScale(value : float):
 	Overlay.scale = Vector2(value, value)
+	overlayScales[currentOverlay] = value
 	
 
 func _on_OverlayScale_value_changed(value):
@@ -501,41 +507,76 @@ func _on_OverlayScale_value_changed(value):
 
 func _on_OverlayVis_toggled(button_pressed):
 	Overlay.visible = button_pressed
+	OverlayShortcutLabel.visible = button_pressed
 
 
 func _on_OverlayLoad_pressed():
 	OverlayFile.popup()
+	
+
+func _on_OverlayFileDialog_file_selected(path):
+	overlayPaths[currentOverlay] = path
+	overlayTextures[currentOverlay] = Loading.loadImage(path)
+	setOverlayTexture(path)
 
 
 func _on_OverlayOpacity_value_changed(value):
 	setOverlayOpacity(float(value)/255)
-	
 
-func _on_OverlayFileDialog_file_selected(path):
-	setOverlayTexture(path)
+
+func _on_OverlayMenu_overlaySwitch(overlay):
+	switchOverlay(overlay)
+
+
+func switchOverlay(overlay : int):
+	currentOverlay = overlay
+	
+	Overlay.texture = overlayTextures[currentOverlay]
+	Overlay.modulate = Color(1, 1, 1, overlayOpacities[currentOverlay])
+	Overlay.scale = overlayScales[currentOverlay]*Vector2(1, 1)
+	
+	OverlayMenu.giveSettings(overlayScales[currentOverlay], overlayOpacities[currentOverlay])
+	print(overlayPaths)
+	print(overlayTextures)
+	print(overlayOpacities)
+	print(overlayScales, "\n")
 
 
 func loadOverlay():
-	var path = LoadInfo.getGamedataLocation() + "overlay.json"
+	for i in range(overlayAmount):
+		overlayPaths.append("")
+		overlayTextures.append(null)
+		overlayOpacities.append(0.5)
+		overlayScales.append(1)
+	
+	var path = LoadInfo.getGamedataLocation() + "overlays.json"
+	print(path)
+	print(Loading.exists(path))
 	if Loading.exists(path):
 		var overlaySettings = Loading.loadDictFromJSON(path)
+		for i in overlaySettings:
+			var overlaySetting = overlaySettings[i]
+			var ii = int(i)
+			overlayPaths[ii] = overlaySetting["filepath"]
+			overlayTextures[ii] = Loading.loadImage(overlayPaths[ii])
+			overlayOpacities[ii] = overlaySetting["opacity"]
+			overlayScales[ii] = overlaySetting["scale"]
 		
-		setOverlayTexture(overlaySettings["filepath"])
-		setOverlayOpacity(overlaySettings["opacity"])
-		setOverlayScale(overlaySettings["scale"])
-		
-		OverlayMenu.giveSettings(overlaySettings)
+		switchOverlay(currentOverlay)
 
 
 func saveOverlay():
-	if overlayPath != "":
-		var overlaySettings = {
-			"filepath"	:	overlayPath,
-			"opacity"	:	Overlay.modulate.a,
-			"scale"		:	Overlay.scale[0]
+	var overlaySettings = {}
+	for i in range(overlayAmount):
+		var overlaySetting = {
+			"filepath"	:	overlayPaths[i],
+			"opacity"	:	overlayOpacities[i],
+			"scale"		:	overlayScales[i]
 		}
-		
-		Saving.saveDictToJSON(LoadInfo.getGamedataLocation() + "overlay.json", overlaySettings)
+		overlaySettings[i] = overlaySetting
+	
+	Saving.saveDictToJSON(LoadInfo.getGamedataLocation() + "overlays.json", overlaySettings)
+
 
 
 
