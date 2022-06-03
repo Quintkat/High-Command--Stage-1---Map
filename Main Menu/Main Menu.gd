@@ -7,6 +7,7 @@ onready var LoadGame = $Buttons/LoadGame
 onready var NewGameNamePopup = $NewGameName
 onready var PopupMenuList = $PopupMenu
 onready var Delete = $Delete
+onready var DeleteConfirmation = $DeleteConfirmation
 
 var mode = ""
 var gameName : String = ""
@@ -28,8 +29,16 @@ func _on_PopupMenu_id_pressed(id):
 		gameName = PopupMenuList.get_item_text(id)
 		LoadInfo.setGameName(gameName)
 		LoadInfo.setSavegameLocation(Directories.LOC_SAVEGAME)
-		loadLoadInfo()
-		initialiseGame()
+		
+		# Loading an existing save game
+		if !Delete.pressed:
+			loadLoadInfo()
+			initialiseGame()
+		
+		# Deleting an existing save game
+		else:
+			DeleteConfirmation.popup()
+			
 	elif mode == "new":
 		selectedGamedataLocation = Directories.LOC_GAMEDATA + PopupMenuList.get_item_text(id)
 		NewGameNamePopup.popup()
@@ -78,7 +87,14 @@ func _on_Delete_pressed():
 
 
 func _on_DeleteConfirmation_confirmed():
-	pass # Replace with function body.
+	var dir = Directory.new()
+	var saveFolder = LoadInfo.getSavegameLocation()
+	var files = Directories.getSubDirectories(saveFolder)
+	for filePath in files:
+		print(dir.remove(saveFolder + filePath))
+	
+	print(dir.remove(saveFolder))
+	_on_LoadGame_button_up()
 
 
 func _on_NewModdedGame_button_up():
@@ -109,6 +125,7 @@ func populateMenuList(dirs : Array):
 
 func initialiseGame():
 	if mode == "load":
+		print(LoadInfo.getSavegameLocation())
 		pass
 	elif mode == "new":
 		LoadInfo.setGameName(gameName)
