@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Fonts/fontInfo.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Graphics/Base Sprites/Flags/Sasbyrg-Tylos.png" type="Texture" id=2]
+[ext_resource path="res://Map/Tile Info/Title.gd" type="Script" id=3]
+[ext_resource path="res://Map/Tile Info/Flag.gd" type="Script" id=4]
+[ext_resource path="res://Map/Tile Info/Terrain.gd" type="Script" id=5]
+[ext_resource path="res://Map/Tile Info/Population.gd" type="Script" id=6]
+[ext_resource path="res://Map/Tile Info/City.gd" type="Script" id=7]
+[ext_resource path="res://Map/Tile Info/IndustrialCapacity.gd" type="Script" id=8]
+[ext_resource path="res://Map/Tile Info/Resource.gd" type="Script" id=9]
+[ext_resource path="res://Map/Tile Info/TileInfo.gd" type="Script" id=10]
+
+[node name="TileInfoCanvas" type="CanvasLayer"]
+script = ExtResource( 10 )
+
+[node name="Panel" type="PanelContainer" parent="."]
+margin_right = 400.0
+margin_bottom = 300.0
+
+[node name="Title" type="Label" parent="."]
+margin_top = 9.0
+margin_right = 400.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 1 )
+align = 1
+script = ExtResource( 3 )
+
+[node name="Basic" type="Control" parent="."]
+margin_left = 9.0
+margin_top = 35.0
+margin_right = 391.0
+margin_bottom = 135.0
+rect_clip_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Basic"]
+margin_right = 400.0
+margin_bottom = 75.0
+
+[node name="Flag" type="TextureRect" parent="Basic/HBoxContainer"]
+margin_right = 180.0
+margin_bottom = 90.0
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Basic/HBoxContainer"]
+margin_left = 184.0
+margin_right = 285.0
+margin_bottom = 90.0
+
+[node name="Terrain" type="Label" parent="Basic/HBoxContainer/VBoxContainer"]
+margin_right = 101.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 1 )
+text = "Terrain:"
+script = ExtResource( 5 )
+
+[node name="Population" type="Label" parent="Basic/HBoxContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 101.0
+margin_bottom = 52.0
+custom_fonts/font = ExtResource( 1 )
+text = "Population:"
+script = ExtResource( 6 )
+
+[node name="Features" type="Control" parent="."]
+margin_top = 140.0
+margin_right = 400.0
+margin_bottom = 240.0
+rect_clip_content = true
+
+[node name="City" type="Label" parent="Features"]
+margin_left = 55.298
+margin_top = 9.0
+margin_right = 95.298
+margin_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = ExtResource( 1 )
+text = "City:"
+align = 1
+script = ExtResource( 7 )
+
+[node name="IndustrialCapacity" type="Label" parent="Features"]
+margin_left = 148.651
+margin_top = 9.0
+margin_right = 224.651
+margin_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = ExtResource( 1 )
+text = "Industry:"
+align = 1
+script = ExtResource( 8 )
+
+[node name="Resource" type="Label" parent="Features"]
+margin_left = 267.572
+margin_top = 9.0
+margin_right = 355.572
+margin_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = ExtResource( 1 )
+text = "Resource:"
+align = 1
+script = ExtResource( 9 )
+
+[node name="IdkYet" type="Control" parent="."]
+margin_top = 200.0
+margin_right = 400.0
+margin_bottom = 300.0
+rect_clip_content = true

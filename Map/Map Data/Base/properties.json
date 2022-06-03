@@ -1,0 +1,7 @@
+{
+  "width"             : 96,
+  "height"            : 54,
+  "cityMedium"        : 200000,
+  "cityLarge"         : 1000000,
+  "tilePopulation"    : 50000
+}

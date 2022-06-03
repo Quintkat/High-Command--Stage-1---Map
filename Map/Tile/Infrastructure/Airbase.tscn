@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Map/Tile/Infrastructure/Airbase.png" type="Texture" id=1]
+[ext_resource path="res://Map/Tile/Infrastructure/Airbase.gd" type="Script" id=2]
+
+[node name="Airbase" type="Sprite"]
+texture = ExtResource( 1 )
+centered = false
+script = ExtResource( 2 )

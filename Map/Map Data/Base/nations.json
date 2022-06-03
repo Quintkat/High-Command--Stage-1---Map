@@ -1,0 +1,37 @@
+{
+    "Bogardia"      :   {
+        "Government"    :   "Tsardom",
+        "Capital"       :   "Gyomov",
+        "Access"        :   ["Tisgyar"]
+    },
+    "Tisgyar"       :   {
+        "Government"    :   "Principality",
+        "Capital"       :   "Lenyeny",
+        "Access"        :   ["Bogardia"]
+    },
+    "Delugia"       :   {
+        "Government"    :   "Republic",
+        "Capital"       :   "Cheche",
+        "Access"        :   []
+    },
+    "Zumolaia"      :   {
+        "Government"    :   "Khanate",
+        "Capital"       :   "Tubkal",
+        "Access"        :   []
+    },
+    "Sasbyrg-Tylos" :   {
+        "Government"    :   "United Republic",
+        "Capital"       :   "Wittnia",
+        "Access"        :   []
+    },
+    "Flussland"     :   {
+        "Government"    :   "Kingdom",
+        "Capital"       :   "Vil",
+        "Access"        :   []
+    },
+    "Tropodeia"     :   {
+        "Government"    :   "Theocracy",
+        "Capital"       :   "Marolympos",
+        "Access"        :   []
+    }
+}

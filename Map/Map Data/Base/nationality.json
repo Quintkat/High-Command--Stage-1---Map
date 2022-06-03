@@ -1,0 +1,86 @@
+{
+    "Bogardia"      :   {
+        "Colour"        :   "#E53232",
+        "Full Names"    :   {
+            "Republic"			: "The Republic of Bogardia",
+            "United Republic"	: "The United Bogardian Republic",
+            "Kingdom"			: "The Kingdom of Bogardia",
+            "Tsardom"			: "The Tsardom of Bogardia",
+            "Principality"		: "The Bogardian Principality",
+            "Theocracy"			: "The Holy State of Bogardia",
+            "Khanate"			: "The Khanate of Bogardia"
+        }
+    },
+    "Tisgyar"       :   {
+        "Colour"        :   "#EF9B87",
+        "Full Names"    :   {
+            "Republic"			: "The Free Republic of Tisgyar",
+            "United Republic"	: "The Joint Republic in Tisgyar",
+            "Kingdom"			: "The Royal Kingdom of Tisgyar",
+            "Tsardom"			: "The Grand Tsardom of Tisgyar",
+            "Principality"		: "The Principality of Tisgyar",
+            "Theocracy"			: "Enlightened Tisgyar",
+            "Khanate"			: "The Tisgyar Khanate"
+        }
+    },
+    "Delugia"       :   {
+        "Colour"        :   "#52F2EF",
+        "Full Names"    :   {
+            "Republic"			: "The Republic of Delugia",
+            "United Republic"	: "The Republic United in Delugia",
+            "Kingdom"			: "The Kingdom of Delugia",
+            "Tsardom"			: "The Delugian Tsardom",
+            "Principality"		: "The Delugian Principality",
+            "Theocracy"			: "The Delugian Holy State",
+            "Khanate"			: "The Delugian Khanate"
+        }
+    },
+    "Zumolaia"      :   {
+        "Colour"        :   "#F3DEB6",
+        "Full Names"    :   {
+            "Republic"			: "The People's Republic of Zumolaia",
+            "United Republic"	: "The United Republic under Zumolaia",
+            "Kingdom"			: "The Zumolaian Kingdom",
+            "Tsardom"			: "The Zumolaian Tsardom",
+            "Principality"		: "The Principality of Zumolaia",
+            "Theocracy"			: "The Land of the Heating Sun",
+            "Khanate"			: "The Zumolaian Khanate"
+        }
+    },
+    "Sasbyrg-Tylos" :   {
+        "Colour"        :   "#73EF3E",
+        "Full Names"    :   {
+            "Republic"			: "The Republic of Sasbyrg",
+            "United Republic"	: "The United Republic of Sasbyrg-Tylos",
+            "Kingdom"			: "The United Kingdom of Sasbyrg-Tylos",
+            "Tsardom"			: "The Tsardom of of Sasbyrg-Tylos",
+            "Principality"		: "The Principality of Sasbyrg-Tylos",
+            "Theocracy"			: "The Land of the Two Gods",
+            "Khanate"			: "The Sasbyrg Khanate"
+        }
+    },
+    "Flussland"     :   {
+        "Colour"        :   "#DB8A00",
+        "Full Names"    :   {
+            "Republic"			: "Flussia",
+            "United Republic"	: "The Flussian Republics",
+            "Kingdom"			: "The Kingdom of Flussland",
+            "Tsardom"			: "The Tsardom of Flussland",
+            "Principality"		: "The Flussian Principality",
+            "Theocracy"			: "Holy Flussia",
+            "Khanate"			: "The Flussian Khanate"
+        }
+    },
+    "Tropodeia"     :   {
+        "Colour"        :   "#76C1E2",
+        "Full Names"    :   {
+            "Republic"			: "The Land of the People",
+            "United Republic"	: "The Land of the People",
+            "Kingdom"			: "The Land of the King",
+            "Tsardom"			: "The Land of the Tsar",
+            "Principality"		: "The Land of the Prince",
+            "Theocracy"			: "Holy Tropodeia",
+            "Khanate"			: "The Land of the Sun"
+        }
+    }
+}

@@ -1,0 +1,1020 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Map Editor/Map Editor.gd" type="Script" id=1]
+[ext_resource path="res://Map Editor/Map Editor Theme.tres" type="Theme" id=2]
+[ext_resource path="res://Map Editor/EditorMap.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Map Editor/GUILayer.gd" type="Script" id=4]
+[ext_resource path="res://Map Editor/MapEditorBackGround.png" type="Texture" id=5]
+[ext_resource path="res://Map Editor/Terrain Panel/TerrainButtons.gd" type="Script" id=6]
+[ext_resource path="res://Map Editor/Terrain Panel/TerrainPanel.gd" type="Script" id=7]
+[ext_resource path="res://Fonts/Tooltip Theme.tres" type="Theme" id=8]
+[ext_resource path="res://Map Editor/MapInteractButton.gd" type="Script" id=9]
+[ext_resource path="res://Map Editor/Map Editor Tile Info Theme.tres" type="Theme" id=10]
+[ext_resource path="res://Map Editor/TileInfoPanelMapEditor.gd" type="Script" id=11]
+[ext_resource path="res://Map Editor/Cities Panel/CitiesPanel.gd" type="Script" id=12]
+[ext_resource path="res://Map Editor/Nationalities Panel/NationalitiesPanel.gd" type="Script" id=13]
+[ext_resource path="res://Map Editor/Nationalities Panel/GovFormsPanel.gd" type="Script" id=14]
+[ext_resource path="res://Map Editor/help.png" type="Texture" id=15]
+[ext_resource path="res://Map Editor/VisibilityPanel.gd" type="Script" id=16]
+[ext_resource path="res://Map Editor/Nations Panel/NationsPanel.gd" type="Script" id=17]
+[ext_resource path="res://Map Editor/Cultures Panel/CulturesPanel.gd" type="Script" id=18]
+[ext_resource path="res://Map Editor/Resources Panel/ResourcesPanel.gd" type="Script" id=19]
+[ext_resource path="res://Graphics/Base Sprites/Resources/Oil.png" type="Texture" id=20]
+[ext_resource path="res://Graphics/Base Sprites/Resources/Aluminium.png" type="Texture" id=21]
+[ext_resource path="res://Graphics/Base Sprites/Resources/Sulphur.png" type="Texture" id=22]
+[ext_resource path="res://Graphics/Base Sprites/Resources/Steel.png" type="Texture" id=23]
+[ext_resource path="res://Map Editor/Infrastructure Panel/railroadButton.png" type="Texture" id=24]
+[ext_resource path="res://Map Editor/Infrastructure Panel/roadButton.png" type="Texture" id=25]
+[ext_resource path="res://Map Editor/Infrastructure Panel/InfrastructurePanel.gd" type="Script" id=26]
+
+[node name="Map Editor" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="EditorMap" parent="." instance=ExtResource( 3 )]
+
+[node name="SelectLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="MapInteractButton" type="Button" parent="SelectLayer"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+action_mode = 0
+button_mask = 3
+script = ExtResource( 9 )
+
+[node name="Background" type="Sprite" parent="SelectLayer"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+layer = 128
+script = ExtResource( 4 )
+
+[node name="ButtonGrid" type="GridContainer" parent="GUILayer"]
+margin_left = 1470.0
+margin_right = 1920.0
+margin_bottom = 175.0
+theme = ExtResource( 2 )
+columns = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Properties" type="Button" parent="GUILayer/ButtonGrid"]
+margin_right = 147.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+text = "Properties"
+
+[node name="Terrain" type="Button" parent="GUILayer/ButtonGrid"]
+margin_left = 151.0
+margin_right = 298.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+text = "Terrain"
+
+[node name="Nationalities" type="Button" parent="GUILayer/ButtonGrid"]
+margin_left = 302.0
+margin_right = 449.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+text = "Nationalities"
+
+[node name="Cities" type="Button" parent="GUILayer/ButtonGrid"]
+margin_top = 59.0
+margin_right = 147.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+text = "Cities"
+
+[node name="Resources" type="Button" parent="GUILayer/ButtonGrid"]
+margin_left = 151.0
+margin_top = 59.0
+margin_right = 298.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+text = "Resources"
+
+[node name="Nations" type="Button" parent="GUILayer/ButtonGrid"]
+margin_left = 302.0
+margin_top = 59.0
+margin_right = 449.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+text = "Nations"
+
+[node name="Infrastructure" type="Button" parent="GUILayer/ButtonGrid"]
+margin_top = 118.0
+margin_right = 147.0
+margin_bottom = 173.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+text = "Infrastructure"
+
+[node name="Rivers" type="Button" parent="GUILayer/ButtonGrid"]
+margin_left = 151.0
+margin_top = 118.0
+margin_right = 298.0
+margin_bottom = 173.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+text = "Rivers"
+
+[node name="Cultures" type="Button" parent="GUILayer/ButtonGrid"]
+margin_left = 302.0
+margin_top = 118.0
+margin_right = 449.0
+margin_bottom = 173.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+text = "Cultures"
+
+[node name="EditPanels" type="MarginContainer" parent="GUILayer"]
+margin_left = 1470.0
+margin_top = 175.0
+margin_right = 1920.0
+margin_bottom = 945.0
+rect_clip_content = true
+theme = ExtResource( 2 )
+
+[node name="Properties" type="PanelContainer" parent="GUILayer/EditPanels"]
+visible = false
+margin_right = 450.0
+margin_bottom = 770.0
+
+[node name="VBox" type="VBoxContainer" parent="GUILayer/EditPanels/Properties"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 443.0
+margin_bottom = 763.0
+
+[node name="Width" type="HBoxContainer" parent="GUILayer/EditPanels/Properties/VBox"]
+margin_right = 436.0
+margin_bottom = 34.0
+alignment = 2
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Properties/VBox/Width"]
+margin_left = 252.0
+margin_top = 5.0
+margin_right = 346.0
+margin_bottom = 29.0
+text = "Grid Width"
+
+[node name="SpinBoxWidth" type="SpinBox" parent="GUILayer/EditPanels/Properties/VBox/Width"]
+margin_left = 350.0
+margin_right = 436.0
+margin_bottom = 34.0
+grow_horizontal = 0
+min_value = 1.0
+max_value = 1000.0
+value = 20.0
+align = 2
+
+[node name="Height" type="HBoxContainer" parent="GUILayer/EditPanels/Properties/VBox"]
+margin_top = 38.0
+margin_right = 436.0
+margin_bottom = 72.0
+alignment = 2
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Properties/VBox/Height"]
+margin_left = 245.0
+margin_top = 5.0
+margin_right = 346.0
+margin_bottom = 29.0
+text = "Grid Height"
+
+[node name="SpinBoxHeight" type="SpinBox" parent="GUILayer/EditPanels/Properties/VBox/Height"]
+margin_left = 350.0
+margin_right = 436.0
+margin_bottom = 34.0
+grow_horizontal = 0
+min_value = 1.0
+max_value = 1000.0
+value = 20.0
+align = 2
+
+[node name="Terrain" type="PanelContainer" parent="GUILayer/EditPanels"]
+visible = false
+margin_right = 450.0
+margin_bottom = 770.0
+script = ExtResource( 7 )
+
+[node name="VBox" type="VBoxContainer" parent="GUILayer/EditPanels/Terrain"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 443.0
+margin_bottom = 898.0
+script = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Terrain/VBox"]
+margin_right = 436.0
+margin_bottom = 24.0
+text = "Terrain Selected: "
+
+[node name="TerrainButtons" type="GridContainer" parent="GUILayer/EditPanels/Terrain/VBox"]
+margin_top = 28.0
+margin_right = 436.0
+margin_bottom = 28.0
+theme = ExtResource( 8 )
+columns = 5
+
+[node name="Nationalities" type="PanelContainer" parent="GUILayer/EditPanels"]
+visible = false
+margin_right = 450.0
+margin_bottom = 770.0
+script = ExtResource( 13 )
+
+[node name="VBox" type="VBoxContainer" parent="GUILayer/EditPanels/Nationalities"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 443.0
+margin_bottom = 763.0
+
+[node name="Warning" type="Label" parent="GUILayer/EditPanels/Nationalities/VBox"]
+margin_right = 436.0
+margin_bottom = 24.0
+custom_colors/font_color = Color( 0.933333, 0.180392, 0.180392, 1 )
+text = "! Nationality visibility is not enabled !"
+align = 1
+
+[node name="New" type="PanelContainer" parent="GUILayer/EditPanels/Nationalities/VBox"]
+margin_top = 28.0
+margin_right = 436.0
+margin_bottom = 412.0
+
+[node name="VBox" type="VBoxContainer" parent="GUILayer/EditPanels/Nationalities/VBox/New"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 429.0
+margin_bottom = 377.0
+
+[node name="LabelBox" type="HBoxContainer" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox"]
+margin_right = 422.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox/LabelBox"]
+margin_right = 394.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Create new or edit existing Nationality"
+
+[node name="TextureRect" type="TextureRect" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox/LabelBox"]
+margin_left = 398.0
+margin_right = 422.0
+margin_bottom = 24.0
+hint_tooltip = "It is recommended to name a new nationality as the name of the country it will be, 
+instead of an adjective.
+Eg: Write \"Bogardia\" instead of \"Bogardian\", since otherwise
+text like \"Tsardom of Bogardian\" will appear in game.
+
+To edit a Nationality, re-enter its name into the Name field."
+theme = ExtResource( 8 )
+texture = ExtResource( 15 )
+
+[node name="Name" type="HBoxContainer" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox"]
+margin_top = 28.0
+margin_right = 422.0
+margin_bottom = 62.0
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox/Name"]
+margin_top = 5.0
+margin_right = 64.0
+margin_bottom = 29.0
+text = "Name: "
+
+[node name="TextEdit" type="TextEdit" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox/Name"]
+margin_left = 68.0
+margin_right = 422.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 0, 34 )
+size_flags_horizontal = 3
+
+[node name="Colour" type="HBoxContainer" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox"]
+margin_top = 66.0
+margin_right = 422.0
+margin_bottom = 96.0
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox/Colour"]
+margin_top = 3.0
+margin_right = 115.0
+margin_bottom = 27.0
+text = "Select color: "
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox/Colour"]
+margin_left = 119.0
+margin_right = 422.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+text = "Select Colour"
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
+[node name="GovFormsPanel" type="PanelContainer" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox"]
+margin_top = 100.0
+margin_right = 422.0
+margin_bottom = 336.0
+script = ExtResource( 14 )
+
+[node name="VBox" type="VBoxContainer" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox/GovFormsPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 415.0
+margin_bottom = 229.0
+
+[node name="LabelBox" type="HBoxContainer" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox/GovFormsPanel/VBox"]
+margin_right = 408.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox/GovFormsPanel/VBox/LabelBox"]
+margin_right = 380.0
+margin_bottom = 24.0
+hint_tooltip = "If a full name for a certain government form is left empty, a nation with that type will display as only its nationality in-game."
+size_flags_horizontal = 3
+text = "Full nation name per government type"
+autowrap = true
+
+[node name="TextureRect" type="TextureRect" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox/GovFormsPanel/VBox/LabelBox"]
+margin_left = 384.0
+margin_right = 408.0
+margin_bottom = 24.0
+hint_tooltip = "Each item is a different government type that a nation can have. 
+Nations can display different versions of their name in text and 
+on the map depending on their government type.
+If a full name for a certain government form is left empty, 
+a nation with that type will display as only its nationality in-game.
+Eg: if the nation Bogardia is a Tsardom, but it is left empty 
+in this field it will simply display as \"Bogardia\" in-game.
+
+A full name can contain line breaks and is recommended to have 
+\"The \" at the start if you want the nation to come up with it in
+certain pieces of text.
+Eg: filling in \"The Republic of Delugia\" will appear in game with
+and without \"The\" wherever appropriate. 
+And \"Holy Tropodeia\" will always appear in game without \"The\".
+It is a matter of preference."
+theme = ExtResource( 8 )
+texture = ExtResource( 15 )
+
+[node name="LoadGovForms" type="Button" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox/GovFormsPanel/VBox"]
+margin_top = 28.0
+margin_right = 408.0
+margin_bottom = 58.0
+text = "Load Existing"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox/GovFormsPanel/VBox"]
+margin_top = 62.0
+margin_right = 408.0
+margin_bottom = 222.0
+rect_min_size = Vector2( 0, 160 )
+follow_focus = true
+
+[node name="GovForms" type="VBoxContainer" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox/GovFormsPanel/VBox/ScrollContainer"]
+margin_right = 408.0
+size_flags_horizontal = 3
+
+[node name="Save" type="Button" parent="GUILayer/EditPanels/Nationalities/VBox/New/VBox"]
+margin_top = 340.0
+margin_right = 422.0
+margin_bottom = 370.0
+text = "Save as new Nationality"
+
+[node name="Draw" type="PanelContainer" parent="GUILayer/EditPanels/Nationalities/VBox"]
+margin_top = 416.0
+margin_right = 436.0
+margin_bottom = 522.0
+
+[node name="VBox" type="VBoxContainer" parent="GUILayer/EditPanels/Nationalities/VBox/Draw"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 429.0
+margin_bottom = 99.0
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Nationalities/VBox/Draw/VBox"]
+margin_right = 422.0
+margin_bottom = 24.0
+text = "Select Nationality to draw:"
+
+[node name="Select" type="OptionButton" parent="GUILayer/EditPanels/Nationalities/VBox/Draw/VBox"]
+margin_top = 28.0
+margin_right = 422.0
+margin_bottom = 58.0
+text = "Select Nationality to draw"
+
+[node name="Remove" type="Button" parent="GUILayer/EditPanels/Nationalities/VBox/Draw/VBox"]
+margin_top = 62.0
+margin_right = 422.0
+margin_bottom = 92.0
+text = "Delete selected Nationality"
+
+[node name="Cities" type="PanelContainer" parent="GUILayer/EditPanels"]
+visible = false
+margin_right = 450.0
+margin_bottom = 770.0
+script = ExtResource( 12 )
+
+[node name="NoSelection" type="VBoxContainer" parent="GUILayer/EditPanels/Cities"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 443.0
+margin_bottom = 763.0
+alignment = 1
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Cities/NoSelection"]
+margin_top = 366.0
+margin_right = 436.0
+margin_bottom = 390.0
+text = "Select a tile to create or edit a city"
+align = 1
+
+[node name="EditCity" type="VBoxContainer" parent="GUILayer/EditPanels/Cities"]
+visible = false
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 443.0
+margin_bottom = 763.0
+
+[node name="Warning" type="Label" parent="GUILayer/EditPanels/Cities/EditCity"]
+visible = false
+margin_right = 436.0
+margin_bottom = 24.0
+custom_colors/font_color = Color( 0.933333, 0.180392, 0.180392, 1 )
+text = "! City visibility is not enabled !"
+align = 1
+
+[node name="Edit" type="Button" parent="GUILayer/EditPanels/Cities/EditCity"]
+margin_top = 28.0
+margin_right = 436.0
+margin_bottom = 58.0
+text = "Create City"
+
+[node name="Name" type="HBoxContainer" parent="GUILayer/EditPanels/Cities/EditCity"]
+margin_top = 62.0
+margin_right = 436.0
+margin_bottom = 96.0
+alignment = 2
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Cities/EditCity/Name"]
+margin_left = 111.0
+margin_top = 5.0
+margin_right = 165.0
+margin_bottom = 29.0
+text = "Name"
+
+[node name="TextEdit" type="TextEdit" parent="GUILayer/EditPanels/Cities/EditCity/Name"]
+margin_left = 169.0
+margin_right = 436.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 267, 34 )
+theme = ExtResource( 2 )
+
+[node name="IC" type="HBoxContainer" parent="GUILayer/EditPanels/Cities/EditCity"]
+margin_top = 100.0
+margin_right = 436.0
+margin_bottom = 134.0
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Cities/EditCity/IC"]
+margin_top = 5.0
+margin_right = 165.0
+margin_bottom = 29.0
+text = "Industrial Capacity"
+
+[node name="SpinBox" type="SpinBox" parent="GUILayer/EditPanels/Cities/EditCity/IC"]
+margin_left = 169.0
+margin_right = 436.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+align = 2
+
+[node name="Remove" type="Button" parent="GUILayer/EditPanels/Cities/EditCity"]
+margin_top = 138.0
+margin_right = 436.0
+margin_bottom = 168.0
+text = "Remove City"
+
+[node name="Resources" type="PanelContainer" parent="GUILayer/EditPanels"]
+visible = false
+margin_right = 450.0
+margin_bottom = 770.0
+script = ExtResource( 19 )
+
+[node name="VBox" type="VBoxContainer" parent="GUILayer/EditPanels/Resources"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 443.0
+margin_bottom = 763.0
+
+[node name="Warning" type="Label" parent="GUILayer/EditPanels/Resources/VBox"]
+margin_right = 436.0
+margin_bottom = 24.0
+custom_colors/font_color = Color( 0.933333, 0.180392, 0.180392, 1 )
+text = "! Resource visibility is not enabled !"
+align = 1
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Resources/VBox"]
+margin_top = 28.0
+margin_right = 436.0
+margin_bottom = 52.0
+text = "Resource selected: none"
+
+[node name="CenterContainer" type="CenterContainer" parent="GUILayer/EditPanels/Resources/VBox"]
+margin_top = 56.0
+margin_right = 436.0
+margin_bottom = 360.0
+
+[node name="GridContainer" type="GridContainer" parent="GUILayer/EditPanels/Resources/VBox/CenterContainer"]
+margin_left = 66.0
+margin_right = 370.0
+margin_bottom = 304.0
+columns = 2
+
+[node name="Aluminium" type="TextureButton" parent="GUILayer/EditPanels/Resources/VBox/CenterContainer/GridContainer"]
+margin_right = 150.0
+margin_bottom = 150.0
+theme = ExtResource( 8 )
+texture_normal = ExtResource( 21 )
+
+[node name="Oil" type="TextureButton" parent="GUILayer/EditPanels/Resources/VBox/CenterContainer/GridContainer"]
+margin_left = 154.0
+margin_right = 304.0
+margin_bottom = 150.0
+theme = ExtResource( 8 )
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 20 )
+
+[node name="Steel" type="TextureButton" parent="GUILayer/EditPanels/Resources/VBox/CenterContainer/GridContainer"]
+margin_top = 154.0
+margin_right = 150.0
+margin_bottom = 304.0
+theme = ExtResource( 8 )
+texture_normal = ExtResource( 23 )
+
+[node name="Sulphur" type="TextureButton" parent="GUILayer/EditPanels/Resources/VBox/CenterContainer/GridContainer"]
+margin_left = 154.0
+margin_top = 154.0
+margin_right = 304.0
+margin_bottom = 304.0
+theme = ExtResource( 8 )
+texture_normal = ExtResource( 22 )
+
+[node name="Nations" type="PanelContainer" parent="GUILayer/EditPanels"]
+visible = false
+margin_right = 450.0
+margin_bottom = 770.0
+script = ExtResource( 17 )
+
+[node name="VBox" type="VBoxContainer" parent="GUILayer/EditPanels/Nations"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 443.0
+margin_bottom = 763.0
+
+[node name="Top Label" type="HBoxContainer" parent="GUILayer/EditPanels/Nations/VBox"]
+margin_right = 436.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Nations/VBox/Top Label"]
+margin_right = 408.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Edit a Nation's government types and capital"
+
+[node name="TextureRect" type="TextureRect" parent="GUILayer/EditPanels/Nations/VBox/Top Label"]
+margin_left = 412.0
+margin_right = 436.0
+margin_bottom = 24.0
+theme = ExtResource( 8 )
+texture = ExtResource( 15 )
+
+[node name="Scroll" type="ScrollContainer" parent="GUILayer/EditPanels/Nations/VBox"]
+margin_top = 28.0
+margin_right = 436.0
+margin_bottom = 756.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Nations" type="VBoxContainer" parent="GUILayer/EditPanels/Nations/VBox/Scroll"]
+margin_right = 436.0
+margin_bottom = 728.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Infrastructure" type="PanelContainer" parent="GUILayer/EditPanels"]
+margin_right = 450.0
+margin_bottom = 770.0
+script = ExtResource( 26 )
+
+[node name="VBox" type="VBoxContainer" parent="GUILayer/EditPanels/Infrastructure"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 443.0
+margin_bottom = 763.0
+
+[node name="Warning" type="Label" parent="GUILayer/EditPanels/Infrastructure/VBox"]
+visible = false
+margin_right = 436.0
+margin_bottom = 24.0
+custom_colors/font_color = Color( 0.933333, 0.180392, 0.180392, 1 )
+text = "! Infrastructure visibility is not enabled !"
+align = 1
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Infrastructure/VBox"]
+margin_right = 436.0
+margin_bottom = 24.0
+text = "Infrastructure selected: none"
+
+[node name="CenterContainer" type="CenterContainer" parent="GUILayer/EditPanels/Infrastructure/VBox"]
+margin_top = 28.0
+margin_right = 436.0
+margin_bottom = 188.0
+
+[node name="GridContainer" type="GridContainer" parent="GUILayer/EditPanels/Infrastructure/VBox/CenterContainer"]
+margin_left = 56.0
+margin_right = 380.0
+margin_bottom = 160.0
+columns = 2
+
+[node name="Road" type="TextureButton" parent="GUILayer/EditPanels/Infrastructure/VBox/CenterContainer/GridContainer"]
+margin_right = 160.0
+margin_bottom = 160.0
+theme = ExtResource( 8 )
+texture_normal = ExtResource( 25 )
+
+[node name="Railroad" type="TextureButton" parent="GUILayer/EditPanels/Infrastructure/VBox/CenterContainer/GridContainer"]
+margin_left = 164.0
+margin_right = 324.0
+margin_bottom = 160.0
+theme = ExtResource( 8 )
+texture_normal = ExtResource( 24 )
+
+[node name="Rivers" type="PanelContainer" parent="GUILayer/EditPanels"]
+visible = false
+margin_right = 450.0
+margin_bottom = 770.0
+
+[node name="Cultures" type="PanelContainer" parent="GUILayer/EditPanels"]
+visible = false
+margin_right = 450.0
+margin_bottom = 770.0
+script = ExtResource( 18 )
+
+[node name="VBox" type="VBoxContainer" parent="GUILayer/EditPanels/Cultures"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 443.0
+margin_bottom = 763.0
+
+[node name="Warning" type="Label" parent="GUILayer/EditPanels/Cultures/VBox"]
+margin_right = 436.0
+margin_bottom = 24.0
+custom_colors/font_color = Color( 0.933333, 0.180392, 0.180392, 1 )
+text = "! Culture visibility is not enabled !"
+align = 1
+
+[node name="New" type="PanelContainer" parent="GUILayer/EditPanels/Cultures/VBox"]
+margin_top = 28.0
+margin_right = 436.0
+margin_bottom = 172.0
+
+[node name="VBox" type="VBoxContainer" parent="GUILayer/EditPanels/Cultures/VBox/New"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 429.0
+margin_bottom = 137.0
+
+[node name="LabelBox" type="HBoxContainer" parent="GUILayer/EditPanels/Cultures/VBox/New/VBox"]
+margin_right = 422.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Cultures/VBox/New/VBox/LabelBox"]
+margin_right = 394.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Create new or edit existing Culture"
+
+[node name="TextureRect" type="TextureRect" parent="GUILayer/EditPanels/Cultures/VBox/New/VBox/LabelBox"]
+margin_left = 398.0
+margin_right = 422.0
+margin_bottom = 24.0
+hint_tooltip = "To edit a Culture, re-enter its name into the Name field."
+theme = ExtResource( 8 )
+texture = ExtResource( 15 )
+
+[node name="Name" type="HBoxContainer" parent="GUILayer/EditPanels/Cultures/VBox/New/VBox"]
+margin_top = 28.0
+margin_right = 422.0
+margin_bottom = 62.0
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Cultures/VBox/New/VBox/Name"]
+margin_top = 5.0
+margin_right = 64.0
+margin_bottom = 29.0
+text = "Name: "
+
+[node name="TextEdit" type="TextEdit" parent="GUILayer/EditPanels/Cultures/VBox/New/VBox/Name"]
+margin_left = 68.0
+margin_right = 422.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 0, 34 )
+size_flags_horizontal = 3
+
+[node name="Colour" type="HBoxContainer" parent="GUILayer/EditPanels/Cultures/VBox/New/VBox"]
+margin_top = 66.0
+margin_right = 422.0
+margin_bottom = 96.0
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Cultures/VBox/New/VBox/Colour"]
+margin_top = 3.0
+margin_right = 115.0
+margin_bottom = 27.0
+text = "Select color: "
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="GUILayer/EditPanels/Cultures/VBox/New/VBox/Colour"]
+margin_left = 119.0
+margin_right = 422.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+text = "Select Colour"
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
+[node name="Save" type="Button" parent="GUILayer/EditPanels/Cultures/VBox/New/VBox"]
+margin_top = 100.0
+margin_right = 422.0
+margin_bottom = 130.0
+text = "Save as new Culture"
+
+[node name="Draw" type="PanelContainer" parent="GUILayer/EditPanels/Cultures/VBox"]
+margin_top = 176.0
+margin_right = 436.0
+margin_bottom = 282.0
+
+[node name="VBox" type="VBoxContainer" parent="GUILayer/EditPanels/Cultures/VBox/Draw"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 429.0
+margin_bottom = 99.0
+
+[node name="Label" type="Label" parent="GUILayer/EditPanels/Cultures/VBox/Draw/VBox"]
+margin_right = 422.0
+margin_bottom = 24.0
+text = "Select Culture to draw:"
+
+[node name="Select" type="OptionButton" parent="GUILayer/EditPanels/Cultures/VBox/Draw/VBox"]
+margin_top = 28.0
+margin_right = 422.0
+margin_bottom = 58.0
+
+[node name="Remove" type="Button" parent="GUILayer/EditPanels/Cultures/VBox/Draw/VBox"]
+margin_top = 62.0
+margin_right = 422.0
+margin_bottom = 92.0
+text = "Delete selected Culture"
+
+[node name="MenuButtons" type="HBoxContainer" parent="GUILayer"]
+margin_right = 334.0
+margin_bottom = 55.0
+theme = ExtResource( 2 )
+
+[node name="Save Menu" type="Button" parent="GUILayer/MenuButtons"]
+margin_right = 178.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Save & go to Menu"
+
+[node name="Save" type="Button" parent="GUILayer/MenuButtons"]
+margin_left = 182.0
+margin_right = 334.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Save"
+
+[node name="VisibilityPanel" type="PanelContainer" parent="GUILayer"]
+margin_top = 998.0
+margin_right = 520.0
+margin_bottom = 1080.0
+theme = ExtResource( 2 )
+script = ExtResource( 16 )
+
+[node name="HBox" type="HBoxContainer" parent="GUILayer/VisibilityPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 513.0
+margin_bottom = 75.0
+theme = ExtResource( 2 )
+
+[node name="Grid" type="GridContainer" parent="GUILayer/VisibilityPanel/HBox"]
+margin_right = 365.0
+margin_bottom = 68.0
+grow_vertical = 0
+theme = ExtResource( 2 )
+columns = 3
+
+[node name="VisNationality" type="CheckBox" parent="GUILayer/VisibilityPanel/HBox/Grid"]
+margin_right = 124.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "Nationality"
+
+[node name="VisCultures" type="CheckBox" parent="GUILayer/VisibilityPanel/HBox/Grid"]
+margin_left = 128.0
+margin_right = 278.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "Cultures"
+
+[node name="VisCities" type="CheckBox" parent="GUILayer/VisibilityPanel/HBox/Grid"]
+margin_left = 282.0
+margin_right = 365.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+pressed = true
+text = "Cities"
+
+[node name="VisResources" type="CheckBox" parent="GUILayer/VisibilityPanel/HBox/Grid"]
+margin_top = 36.0
+margin_right = 124.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "Resources"
+
+[node name="VisInfrastructure" type="CheckBox" parent="GUILayer/VisibilityPanel/HBox/Grid"]
+margin_left = 128.0
+margin_top = 36.0
+margin_right = 278.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+pressed = true
+text = "Infrastructure"
+
+[node name="VisRivers" type="CheckBox" parent="GUILayer/VisibilityPanel/HBox/Grid"]
+margin_left = 282.0
+margin_top = 36.0
+margin_right = 365.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+pressed = true
+text = "Rivers"
+
+[node name="GridOverlay" type="CheckBox" parent="GUILayer/VisibilityPanel/HBox"]
+margin_left = 369.0
+margin_right = 506.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "Grid Overlay"
+
+[node name="TileInfoPanel" type="PanelContainer" parent="GUILayer"]
+margin_left = 1470.0
+margin_top = 945.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+theme = ExtResource( 10 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HBox" type="HBoxContainer" parent="GUILayer/TileInfoPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 443.0
+margin_bottom = 128.0
+
+[node name="Left" type="VBoxContainer" parent="GUILayer/TileInfoPanel/HBox"]
+margin_right = 216.0
+margin_bottom = 121.0
+size_flags_horizontal = 3
+
+[node name="Position" type="Label" parent="GUILayer/TileInfoPanel/HBox/Left"]
+margin_right = 216.0
+margin_bottom = 21.0
+
+[node name="Terrain" type="Label" parent="GUILayer/TileInfoPanel/HBox/Left"]
+margin_top = 25.0
+margin_right = 216.0
+margin_bottom = 46.0
+
+[node name="Nationality" type="Label" parent="GUILayer/TileInfoPanel/HBox/Left"]
+margin_top = 50.0
+margin_right = 216.0
+margin_bottom = 71.0
+
+[node name="Culture" type="Label" parent="GUILayer/TileInfoPanel/HBox/Left"]
+margin_top = 75.0
+margin_right = 216.0
+margin_bottom = 96.0
+
+[node name="River" type="Label" parent="GUILayer/TileInfoPanel/HBox/Left"]
+margin_top = 100.0
+margin_right = 216.0
+margin_bottom = 121.0
+
+[node name="Right" type="VBoxContainer" parent="GUILayer/TileInfoPanel/HBox"]
+margin_left = 220.0
+margin_right = 436.0
+margin_bottom = 121.0
+size_flags_horizontal = 3
+
+[node name="City" type="Label" parent="GUILayer/TileInfoPanel/HBox/Right"]
+margin_right = 216.0
+margin_bottom = 21.0
+
+[node name="IC" type="Label" parent="GUILayer/TileInfoPanel/HBox/Right"]
+margin_top = 25.0
+margin_right = 216.0
+margin_bottom = 46.0
+
+[node name="Road" type="Label" parent="GUILayer/TileInfoPanel/HBox/Right"]
+margin_top = 50.0
+margin_right = 216.0
+margin_bottom = 71.0
+
+[node name="Railroad" type="Label" parent="GUILayer/TileInfoPanel/HBox/Right"]
+margin_top = 75.0
+margin_right = 216.0
+margin_bottom = 96.0
+
+[node name="Resource" type="Label" parent="GUILayer/TileInfoPanel/HBox/Right"]
+margin_top = 100.0
+margin_right = 216.0
+margin_bottom = 121.0
+
+[node name="ShortCutLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="ShortCutLayer"]
+margin_left = 726.0
+margin_top = 1052.0
+margin_right = 1194.0
+margin_bottom = 1073.0
+theme = ExtResource( 10 )
+custom_colors/font_color = Color( 0.768627, 0.768627, 0.768627, 1 )
+text = "Tab: Toggle GUI / F1-6: Toggle visibility layers / G: Toggle grid"
+
+[connection signal="button_down" from="SelectLayer/MapInteractButton" to="." method="_on_MapInteractButton_button_down"]
+[connection signal="button_up" from="SelectLayer/MapInteractButton" to="." method="_on_MapInteractButton_button_up"]
+[connection signal="holdDown" from="SelectLayer/MapInteractButton" to="." method="_on_MapInteractButton_holdDown"]
+[connection signal="button_down" from="GUILayer/ButtonGrid/Properties" to="." method="_on_Properties_button_down"]
+[connection signal="button_down" from="GUILayer/ButtonGrid/Terrain" to="." method="_on_Terrain_button_down"]
+[connection signal="button_down" from="GUILayer/ButtonGrid/Nationalities" to="." method="_on_Nationalities_button_down"]
+[connection signal="button_down" from="GUILayer/ButtonGrid/Cities" to="." method="_on_Cities_button_down"]
+[connection signal="button_down" from="GUILayer/ButtonGrid/Resources" to="." method="_on_Resources_button_down"]
+[connection signal="button_down" from="GUILayer/ButtonGrid/Nations" to="." method="_on_Nations_button_down"]
+[connection signal="button_down" from="GUILayer/ButtonGrid/Infrastructure" to="." method="_on_Infrastructure_button_down"]
+[connection signal="button_down" from="GUILayer/ButtonGrid/Rivers" to="." method="_on_Rivers_button_down"]
+[connection signal="button_down" from="GUILayer/ButtonGrid/Cultures" to="." method="_on_Cultures_button_down"]
+[connection signal="value_changed" from="GUILayer/EditPanels/Properties/VBox/Width/SpinBoxWidth" to="." method="_on_SpinBoxWidth_value_changed"]
+[connection signal="value_changed" from="GUILayer/EditPanels/Properties/VBox/Height/SpinBoxHeight" to="." method="_on_SpinBoxHeight_value_changed"]
+[connection signal="pressed" from="GUILayer/EditPanels/Nationalities/VBox/New/VBox/GovFormsPanel/VBox/LoadGovForms" to="GUILayer/EditPanels/Nationalities/VBox/New/VBox/GovFormsPanel" method="_on_LoadGovForms_pressed"]
+[connection signal="pressed" from="GUILayer/EditPanels/Nationalities/VBox/New/VBox/Save" to="GUILayer/EditPanels/Nationalities" method="_on_Save_pressed"]
+[connection signal="item_selected" from="GUILayer/EditPanels/Nationalities/VBox/Draw/VBox/Select" to="GUILayer/EditPanels/Nationalities" method="_on_Select_item_selected"]
+[connection signal="pressed" from="GUILayer/EditPanels/Nationalities/VBox/Draw/VBox/Remove" to="GUILayer/EditPanels/Nationalities" method="_on_Remove_pressed"]
+[connection signal="pressed" from="GUILayer/EditPanels/Cities/EditCity/Edit" to="GUILayer/EditPanels/Cities" method="_on_Edit_pressed"]
+[connection signal="pressed" from="GUILayer/EditPanels/Cities/EditCity/Remove" to="GUILayer/EditPanels/Cities" method="_on_Remove_pressed"]
+[connection signal="pressed" from="GUILayer/EditPanels/Resources/VBox/CenterContainer/GridContainer/Aluminium" to="GUILayer/EditPanels/Resources" method="_on_Aluminium_pressed"]
+[connection signal="pressed" from="GUILayer/EditPanels/Resources/VBox/CenterContainer/GridContainer/Oil" to="GUILayer/EditPanels/Resources" method="_on_Oil_pressed"]
+[connection signal="pressed" from="GUILayer/EditPanels/Resources/VBox/CenterContainer/GridContainer/Steel" to="GUILayer/EditPanels/Resources" method="_on_Steel_pressed"]
+[connection signal="pressed" from="GUILayer/EditPanels/Resources/VBox/CenterContainer/GridContainer/Sulphur" to="GUILayer/EditPanels/Resources" method="_on_Sulphur_pressed"]
+[connection signal="pressed" from="GUILayer/EditPanels/Infrastructure/VBox/CenterContainer/GridContainer/Road" to="GUILayer/EditPanels/Infrastructure" method="_on_Road_pressed"]
+[connection signal="pressed" from="GUILayer/EditPanels/Infrastructure/VBox/CenterContainer/GridContainer/Railroad" to="GUILayer/EditPanels/Infrastructure" method="_on_Railroad_pressed"]
+[connection signal="pressed" from="GUILayer/EditPanels/Cultures/VBox/New/VBox/Save" to="GUILayer/EditPanels/Cultures" method="_on_Save_pressed"]
+[connection signal="item_selected" from="GUILayer/EditPanels/Cultures/VBox/Draw/VBox/Select" to="GUILayer/EditPanels/Cultures" method="_on_Select_item_selected"]
+[connection signal="pressed" from="GUILayer/EditPanels/Cultures/VBox/Draw/VBox/Remove" to="GUILayer/EditPanels/Cultures" method="_on_Remove_pressed"]
+[connection signal="button_up" from="GUILayer/MenuButtons/Save Menu" to="." method="_on_Save_Menu_button_up"]
+[connection signal="button_up" from="GUILayer/MenuButtons/Save" to="." method="_on_Save_button_up"]
+[connection signal="toggled" from="GUILayer/VisibilityPanel/HBox/Grid/VisNationality" to="." method="_on_VisNationality_toggled"]
+[connection signal="toggled" from="GUILayer/VisibilityPanel/HBox/Grid/VisCultures" to="." method="_on_VisCultures_toggled"]
+[connection signal="toggled" from="GUILayer/VisibilityPanel/HBox/Grid/VisCities" to="." method="_on_VisCities_toggled"]
+[connection signal="toggled" from="GUILayer/VisibilityPanel/HBox/Grid/VisResources" to="." method="_on_VisResources_toggled"]
+[connection signal="toggled" from="GUILayer/VisibilityPanel/HBox/Grid/VisInfrastructure" to="." method="_on_VisInfrastructure_toggled"]
+[connection signal="toggled" from="GUILayer/VisibilityPanel/HBox/Grid/VisRivers" to="." method="_on_VisRivers_toggled"]
+[connection signal="toggled" from="GUILayer/VisibilityPanel/HBox/GridOverlay" to="." method="_on_GridOverlay_toggled"]
