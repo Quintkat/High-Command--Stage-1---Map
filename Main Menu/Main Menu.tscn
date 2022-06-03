@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Fonts/fontMenu.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Fonts/fontTitle.tres" type="DynamicFont" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Fonts/fontTextEdit.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Main Menu/NewGameName.gd" type="Script" id=6]
 [ext_resource path="res://Main Menu/MenuBackground.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Fonts/fontEscapeMenu.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Main Menu/DeleteSaveFile.png" type="Texture" id=9]
+[ext_resource path="res://Map Editor/Map Editor Theme.tres" type="Theme" id=10]
 
 [node name="Main Menu" type="Control"]
 anchor_right = 1.0
@@ -120,6 +123,25 @@ text = "Quit"
 flat = true
 align = 0
 
+[node name="Delete" type="CheckBox" parent="."]
+margin_left = 541.538
+margin_top = 971.245
+margin_right = 779.538
+margin_bottom = 1051.25
+custom_fonts/font = ExtResource( 8 )
+text = "Delete"
+icon = ExtResource( 9 )
+
+[node name="DeleteConfirmation" type="ConfirmationDialog" parent="."]
+visible = true
+margin_left = 843.0
+margin_top = 504.0
+margin_right = 1076.0
+margin_bottom = 609.0
+theme = ExtResource( 10 )
+dialog_text = "Are you sure you want to delete this save file?"
+dialog_autowrap = true
+
 [connection signal="id_pressed" from="PopupMenu" to="." method="_on_PopupMenu_id_pressed"]
 [connection signal="confirmed" from="NewGameName" to="." method="_on_NewGameName_confirmed"]
 [connection signal="button_up" from="Buttons/NewGame" to="." method="_on_NewGame_button_up"]
@@ -129,3 +151,5 @@ align = 0
 [connection signal="button_up" from="Buttons/Settings" to="." method="_on_Settings_button_up"]
 [connection signal="button_up" from="Buttons/Credits" to="." method="_on_Credits_button_up"]
 [connection signal="button_up" from="Buttons/Quit" to="." method="_on_Quit_button_up"]
+[connection signal="pressed" from="Delete" to="." method="_on_Delete_pressed"]
+[connection signal="confirmed" from="DeleteConfirmation" to="." method="_on_DeleteConfirmation_confirmed"]

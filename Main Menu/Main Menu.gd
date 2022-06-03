@@ -6,6 +6,7 @@ onready var NewModdedGame = $Buttons/NewModdedGame
 onready var LoadGame = $Buttons/LoadGame
 onready var NewGameNamePopup = $NewGameName
 onready var PopupMenuList = $PopupMenu
+onready var Delete = $Delete
 
 var mode = ""
 var gameName : String = ""
@@ -15,6 +16,11 @@ var selectedSavegameLocation : String = ""
 
 func getDirectories(path : String) -> Array:
 	return Directories.getSubDirectories(path)
+
+
+func _process(delta):
+	if !PopupMenuList.visible:
+		Delete.visible = false
 
 
 func _on_PopupMenu_id_pressed(id):
@@ -38,6 +44,7 @@ func _on_Quit_button_up():
 
 func _on_LoadGame_button_up():
 	mode = "load"
+	Delete.visible = true
 	var saveFiles = getDirectories(Directories.LOC_SAVEGAME)
 	saveFiles.sort_custom(self, "sortSaveFiles")
 	populateMenuList(saveFiles)
@@ -63,6 +70,15 @@ func sortSaveFiles(a : String, b : String) -> bool:
 		return true
 	
 	return ia[last] > ib[last]
+
+
+func _on_Delete_pressed():
+	PopupMenuList.popup()
+	Delete.visible = true
+
+
+func _on_DeleteConfirmation_confirmed():
+	pass # Replace with function body.
 
 
 func _on_NewModdedGame_button_up():
@@ -124,9 +140,6 @@ func _on_Settings_button_up():
 
 func _on_Credits_button_up():
 	get_tree().change_scene("res://Main Menu/CreditsMenu.tscn")
-
-
-
 
 
 
