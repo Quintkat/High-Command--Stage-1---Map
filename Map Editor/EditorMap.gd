@@ -595,7 +595,7 @@ func addCityLabel(city : City):
 
 
 func updateCityLabelText(city : City):
-	cityLabels[city].text = city.getName()
+	cityLabels[city].updateText(city.getName())
 
 
 func _on_Cities_popScaleUpdated():

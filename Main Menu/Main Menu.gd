@@ -91,9 +91,9 @@ func _on_DeleteConfirmation_confirmed():
 	var saveFolder = LoadInfo.getSavegameLocation()
 	var files = Directories.getSubDirectories(saveFolder)
 	for filePath in files:
-		print(dir.remove(saveFolder + filePath))
+		dir.remove(saveFolder + filePath)
 	
-	print(dir.remove(saveFolder))
+	dir.remove(saveFolder)
 	_on_LoadGame_button_up()
 
 

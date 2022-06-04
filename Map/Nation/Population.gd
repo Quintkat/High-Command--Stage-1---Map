@@ -14,8 +14,8 @@ const terrainFactor = {
 	Terrain.LAKE		:	0.0,
 	Terrain.MARSH		:	0.12,
 	Terrain.BRIDGE		:	0.0,
-	Terrain.PLAINS		:	0.5,
-	Terrain.FOREST		:	0.8,
+	Terrain.PLAINS		:	0.8,
+	Terrain.FOREST		:	0.6,
 	Terrain.TAIGA		:	0.12,
 	Terrain.HILLS		:	0.8,
 	Terrain.MOUNTAINS	:	0.2,
@@ -23,7 +23,7 @@ const terrainFactor = {
 	Terrain.DESERT		:	0.04,
 	Terrain.FARMLAND	:	1.4,
 	Terrain.CITY		:	2.5,
-	Terrain.RAINFOREST	:	0.6,
+	Terrain.RAINFOREST	:	0.35,
 	Terrain.STEPPES		:	0.3,
 	Terrain.ICE			:	0.0,
 	Terrain.TUNDRA		:	0.04,
@@ -67,8 +67,8 @@ func getCityGraphicsLarge() -> int:
 func getTilePopulation(tile) -> int:
 	var factor = rng.randfn(factorMean, factorSD)
 	var result = int(factor*tilePopulation*terrainFactor[tile.getTerrain()])
-	if tile.hasCity():
-		result += tile.getCity().getPopulation()
+#	if tile.hasCity():
+#		result += tile.getCity().getPopulation()
 	
 	return result
 

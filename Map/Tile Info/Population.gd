@@ -2,4 +2,7 @@ extends Label
 
 
 func upd(tile : Tile):
-	text = "Population: " + Misc.commaSep(tile.getPopulation())
+	var pop = tile.getPopulation()
+	if tile.hasCity():
+		pop += tile.getCity().getPopulation()
+	text = "Population: " + Misc.commaSep(pop)

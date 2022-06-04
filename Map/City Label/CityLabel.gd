@@ -15,6 +15,10 @@ func init(n : String, pos : Vector2, capital : bool = false):
 		Lab.theme = load("res://Map/City Label/CapitalTheme.tres")
 
 
+func updateText(t : String):
+	Lab.text = t
+
+
 func updateCapital(capital : bool):
 	if capital:
 		Lab.theme = load("res://Map/City Label/CapitalTheme.tres")

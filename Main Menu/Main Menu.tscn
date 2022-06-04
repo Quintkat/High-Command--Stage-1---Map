@@ -133,7 +133,6 @@ text = "Delete"
 icon = ExtResource( 9 )
 
 [node name="DeleteConfirmation" type="ConfirmationDialog" parent="."]
-visible = true
 margin_left = 843.0
 margin_top = 504.0
 margin_right = 1076.0

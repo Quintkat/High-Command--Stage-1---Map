@@ -7,12 +7,13 @@ onready var Pop = $Basic/HBoxContainer/VBoxContainer/Population
 onready var CityL = $Features/City
 onready var IndCap = $Features/IndustrialCapacity
 onready var Res = $Features/Resource
+onready var Riv = $Features2/River
 
 var children
 
 
 func _ready():
-	children = [Title, Flag, Ter, Pop, CityL, IndCap, Res]
+	children = [Title, Flag, Ter, Pop, CityL, IndCap, Res, Riv]
 
 
 func show(tile : Tile):

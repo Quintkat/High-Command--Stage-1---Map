@@ -536,10 +536,6 @@ func switchOverlay(overlay : int):
 	Overlay.scale = overlayScales[currentOverlay]*Vector2(1, 1)
 	
 	OverlayMenu.giveSettings(overlayScales[currentOverlay], overlayOpacities[currentOverlay])
-	print(overlayPaths)
-	print(overlayTextures)
-	print(overlayOpacities)
-	print(overlayScales, "\n")
 
 
 func loadOverlay():
@@ -550,8 +546,6 @@ func loadOverlay():
 		overlayScales.append(1)
 	
 	var path = LoadInfo.getGamedataLocation() + "overlays.json"
-	print(path)
-	print(Loading.exists(path))
 	if Loading.exists(path):
 		var overlaySettings = Loading.loadDictFromJSON(path)
 		for i in overlaySettings:
